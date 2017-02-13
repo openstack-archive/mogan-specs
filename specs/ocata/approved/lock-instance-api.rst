@@ -73,7 +73,7 @@ REST API impact
     * PUT
 
 * URL:
-    * /instances/{instance_uuid}/lock
+    * /instances/{instance_uuid}/states/lock
 
 *Lock an instance*
 
