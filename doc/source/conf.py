@@ -28,7 +28,6 @@ import os
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.autodoc',
-              'sphinx.ext.todo',
               'sphinx.ext.viewcode',
               'oslosphinx',
               'yasfb',
@@ -92,9 +91,6 @@ pygments_style = 'sphinx'
 
 # A list of ignored prefixes for module index sorting.
 modindex_common_prefix = ['mogan-specs.']
-
-# -- Options for man page output ----------------------------------------------
-man_pages = []
 
 # -- Options for HTML output ---------------------------------------------------
 
