@@ -54,6 +54,8 @@ The operator might define the flavors as such::
         CUSTOM_BAREMETAL_GOLD: 1
       resource_traits:
         CUSTOM_BAREMETAL_GOLD: FPGA
+      resource_aggregates:
+        high_mem: true
       description:
         Intel(R) Xeon(R) E5620 2.40GHz 16 cores, 8GB RAM
 
@@ -87,6 +89,8 @@ with their data type and default value for migrations.
 +-----------------------+--------------+-----------------+
 | resource_traits       | DictOfString | None            |
 +-----------------------+--------------+-----------------+
+| resource_aggregates   | DictOfString | None            |
++-----------------------+--------------+-----------------+
 | description           | String       | None            |
 +-----------------------+--------------+-----------------+
 | is_public             | Bool         | True            |
@@ -94,8 +98,9 @@ with their data type and default value for migrations.
 | disabled              | Bool         | False           |
 +-----------------------+--------------+-----------------+
 
-The `resources` field indicates the resource quantities and the
-`resource_traits` field reference to the resource qualities.
+The `resources` field indicates the resource quantities, the `resource_traits`
+field reference to the resource qualities, and the `resource_aggregates` field
+including the group information.
 
 The `disabled` field is intended to be used when phasing out flavors. In this
 case, a delete wouldn't work because the flavor needs to still be available
@@ -130,6 +135,15 @@ REST API will be changed as part of this change.
                 'additionalProperties': False
             },
             'resource_traits': {
+                'type': 'object',
+                'patternProperties': {
+                    '^[a-zA-Z0-9-_:. ]{1,255}$': {
+                        'type': 'string', 'maxLength': 255
+                    }
+                },
+                'additionalProperties': False
+            },
+            'resource_aggregates': {
                 'type': 'object',
                 'patternProperties': {
                     '^[a-zA-Z0-9-_:. ]{1,255}$': {
