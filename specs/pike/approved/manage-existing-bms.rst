@@ -39,7 +39,7 @@ Proposed change
 
 *  Introduce a new admin only API, which supports to query nodes that could
    be managed by mogan. This API will pass down the request to drivers, which
-   needs to add a new driver interface `list_adoptable_nodes`, there will be
+   needs to add a new driver interface `list_manageable_nodes`, there will be
    driver specified criterias of which nodes are manageable. For ironic, it
    should be nodes in active state but without instance_uuid associated, and
    the resource class field should be well set.
@@ -104,11 +104,11 @@ REST API impact
      'additionalProperties': False,
     }
 
-#. Add a new API that will list adoptable nodes which will include all needed
+#. Add a new API that will list manageable nodes which will include all needed
    informations when calling manage API. It may look like this::
 
    {
-    "adoptable_nodes": [
+    "manageable_nodes": [
         {
             "name": "test_server",
             "ports": [
@@ -196,7 +196,7 @@ Unit Testing will be added.
 Documentation Impact
 ====================
 
-Docs about adopt/manage servers will be added, including the preparation work
+Docs about manage servers will be added, including the preparation work
 for operator.
 
 References
