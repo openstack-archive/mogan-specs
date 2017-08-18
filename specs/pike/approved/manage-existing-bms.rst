@@ -48,10 +48,9 @@ Proposed change
    API. This needs to add a new workflow which will skip schduling comparing
    with server create workflow.
 
-*  We will collect the image, network information from the adoptable nodes, and
-   will check if the resource existing in glance and neutron. For images, it
-   will be None if we can't find it, but for neutron port, it should be a must
-   when determine wheter the node can be managed.
+*  We will collect the image, network information from the manageable nodes,
+   and will check if the resource existing in glance and neutron.
+   For images and neutron ports, it will be None if we can't find them.
 
 
 Alternatives
@@ -82,23 +81,17 @@ REST API impact
          'description': {'type': 'string', 'minLength': 1, 'maxLength': 255},
          'availability_zone': {'type': 'string', 'minLength': 1,
                                'maxLength': 255},
+         'metadata': {'type': 'object',
+                      'patternProperties': {
+                          '^[a-zA-Z0-9-_:. ]{1,255}$': {
+                              'type': 'string', 'maxLength': 255
+                              }
+                         },
+                      'additionalProperties': False
+         }
          'node_uuid': {'type': 'string', 'format': 'uuid'},
-         'flavor_uuid': {'type': 'string', 'format': 'uuid'},
-         'networks': {
-             'type': 'array', 'minItems': 1,
-             'items': {
-                 'type': 'object',
-                 'properties': {
-                     'port_type': {'type': 'string', 'minLength': 1,
-                                   'maxLength': 255},
-                     'port_id': {'type': 'string', 'format': 'uuid'},
-                 },
-                 'required': ['port_id'],
-                 'additionalProperties': False,
-             },
-         },
      },
-     'required': ['name', 'node_uuid', 'flavor_uuid', 'networks'],
+     'required': ['name', 'node_uuid'],
      'additionalProperties': False,
     }
 
@@ -125,12 +118,10 @@ REST API impact
                     "rel": "bookmark"
                 }
                      ],
+            "portgroups": [],
             "power_state": "power on",
             "provision_state": "active",
-            "created_at": "2016-10-17T04:12:44+00:00",
             "uuid": "f978ef48-d4af-4dad-beec-e6174309bc71",
-            "properties": {},
-            "instance_info": {},
             "resource_class": 'gold',
         }
     ]
