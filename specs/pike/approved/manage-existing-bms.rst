@@ -48,10 +48,9 @@ Proposed change
    API. This needs to add a new workflow which will skip schduling comparing
    with server create workflow.
 
-*  We will collect the image, network information from the adoptable nodes, and
-   will check if the resource existing in glance and neutron. For images, it
-   will be None if we can't find it, but for neutron port, it should be a must
-   when determine wheter the node can be managed.
+*  We will collect the image, network information from the manageable nodes,
+   and will check if the resource existing in glance and neutron.
+   For images and neutron ports, it will be None if we can't find them.
 
 
 Alternatives
@@ -82,23 +81,17 @@ REST API impact
          'description': {'type': 'string', 'minLength': 1, 'maxLength': 255},
          'availability_zone': {'type': 'string', 'minLength': 1,
                                'maxLength': 255},
+         'metadata': {'type': 'object',
+                      'patternProperties': {
+                          '^[a-zA-Z0-9-_:. ]{1,255}$': {
+                              'type': 'string', 'maxLength': 255
+                              }
+                         },
+                      'additionalProperties': False
+         }
          'node_uuid': {'type': 'string', 'format': 'uuid'},
-         'flavor_uuid': {'type': 'string', 'format': 'uuid'},
-         'networks': {
-             'type': 'array', 'minItems': 1,
-             'items': {
-                 'type': 'object',
-                 'properties': {
-                     'port_type': {'type': 'string', 'minLength': 1,
-                                   'maxLength': 255},
-                     'port_id': {'type': 'string', 'format': 'uuid'},
-                 },
-                 'required': ['port_id'],
-                 'additionalProperties': False,
-             },
-         },
      },
-     'required': ['name', 'node_uuid', 'flavor_uuid', 'networks'],
+     'required': ['name', 'node_uuid'],
      'additionalProperties': False,
     }
 
@@ -108,30 +101,27 @@ REST API impact
    GET v1/manageable_servers
 
    {
-    "manageable_servers": [
+    "manageableservers": [
         {
             "name": "test_server",
             "ports": [
                 {
-                    "uuid": "6d85703a-565d-469a-96ce-30b6de53079d",
-                    "vif_port_id": "12345678-1234-1234-1234-123456789012",
-                    "href": "http://127.0.0.1:6385/v1/nodes/6d85703a-565d-469a-96ce-30b6de53079d/ports",
-                    "rel": "self"
+                    "address": "a4:dc:be:0e:82:a5",
+                    "uuid": "1ec01153-685a-49b5-a6d3-45a4e7dddf53",
+                    "neutron_port_id": "a9b94592-1d8e-46bb-836b-c7ba935b0136"
                 },
                 {
-                    "uuid": "6d85703a-565d-469a-96ce-30b6de53079d",
-                    "vif_port_id": "12345678-1234-1234-1234-123456789013",
-                    "href": "http://127.0.0.1:6385/nodes/6d85703a-565d-469a-96ce-30b6de53079d/ports",
-                    "rel": "bookmark"
+                    "address": "a4:dc:be:0e:82:a6",
+                    "uuid": "1ec01153-685a-49b5-a6d3-45a4e7dddf54",
+                    "neutron_port_id": "a9b94592-1d8e-46bb-836b-c7ba935b0137"
                 }
                      ],
+            "portgroups": [],
             "power_state": "power on",
             "provision_state": "active",
-            "created_at": "2016-10-17T04:12:44+00:00",
             "uuid": "f978ef48-d4af-4dad-beec-e6174309bc71",
-            "properties": {},
-            "instance_info": {},
             "resource_class": 'gold',
+            "image_source": "03239419-e588-42b6-a70f-94f23ed0c9e2"
         }
     ]
    }
