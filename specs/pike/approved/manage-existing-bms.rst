@@ -40,7 +40,7 @@ Proposed change
 *  Introduce a new admin only API, which supports to query nodes that could
    be managed by mogan. This API will pass down the request to drivers, which
    needs to add a new driver interface `get_manageable_nodes`, there will be
-   driver specified criterias of which nodes are manageable. For ironic, it
+   driver specified criteria of which nodes are manageable. For ironic, it
    should be nodes in active state but without instance_uuid associated, and
    the resource class field should be well set.
 

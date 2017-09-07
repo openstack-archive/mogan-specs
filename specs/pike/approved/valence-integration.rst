@@ -171,6 +171,6 @@ Docs about Valence integration will be added.
 References
 ==========
 
-.. [1] http://wiki.openstack.org/wiki/TaskFlow
+.. [1] https://wiki.openstack.org/wiki/TaskFlow
 
 * https://wiki.openstack.org/wiki/Valence
