@@ -1,0 +1,11 @@
+Verified+1: Jenkins
+Code-Review+1: Xinran WANG <xin-ran.wang@intel.com>
+Code-Review+2: ShaoHe Feng <shaohe.feng@intel.com>
+Code-Review+2: liusheng <liusheng2048@gmail.com>
+Workflow+1: liusheng <liusheng2048@gmail.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 23 Oct 2017 09:58:45 +0000
+Reviewed-on: https://review.openstack.org/511401
+Project: openstack/mogan-specs
+Branch: refs/heads/master
