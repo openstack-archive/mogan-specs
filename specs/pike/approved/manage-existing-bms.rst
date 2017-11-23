@@ -96,33 +96,33 @@ REST API impact
 #. Add a new API that will list manageable servers which will include all
    needed informations when calling manage API. It may look like this::
 
-   GET v1/manageable_servers
+    GET v1/manageable_servers
 
-   {
-    "manageable_servers": [
-        {
-            "name": "test_server",
-            "ports": [
-                {
-                    "address": "a4:dc:be:0e:82:a5",
-                    "uuid": "1ec01153-685a-49b5-a6d3-45a4e7dddf53",
-                    "neutron_port_id": "a9b94592-1d8e-46bb-836b-c7ba935b0136"
-                },
-                {
-                    "address": "a4:dc:be:0e:82:a6",
-                    "uuid": "1ec01153-685a-49b5-a6d3-45a4e7dddf54",
-                    "neutron_port_id": "a9b94592-1d8e-46bb-836b-c7ba935b0137"
-                }
-                     ],
-            "portgroups": [],
-            "power_state": "power on",
-            "provision_state": "active",
-            "uuid": "f978ef48-d4af-4dad-beec-e6174309bc71",
-            "resource_class": 'gold',
-            "image_source": "03239419-e588-42b6-a70f-94f23ed0c9e2"
-        }
-    ]
-   }
+    {
+     "manageable_servers": [
+         {
+             "name": "test_server",
+             "ports": [
+                 {
+                     "address": "a4:dc:be:0e:82:a5",
+                     "uuid": "1ec01153-685a-49b5-a6d3-45a4e7dddf53",
+                     "neutron_port_id": "a9b94592-1d8e-46bb-836b-c7ba935b0136"
+                 },
+                 {
+                     "address": "a4:dc:be:0e:82:a6",
+                     "uuid": "1ec01153-685a-49b5-a6d3-45a4e7dddf54",
+                     "neutron_port_id": "a9b94592-1d8e-46bb-836b-c7ba935b0137"
+                 }
+                      ],
+             "portgroups": [],
+             "power_state": "power on",
+             "provision_state": "active",
+             "uuid": "f978ef48-d4af-4dad-beec-e6174309bc71",
+             "resource_class": 'gold',
+             "image_source": "03239419-e588-42b6-a70f-94f23ed0c9e2"
+         }
+     ]
+    }
 
 
 Security impact

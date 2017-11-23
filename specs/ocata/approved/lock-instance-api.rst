@@ -112,7 +112,7 @@ REST API impact
     * If `Admin` locked an instance, only `Admin` can unlock it.
     * If `Owner` locked an instance, both `Owner` and `Admin` can unlock it.
     * If an instance has been locked, **UNLOCK** was only allowed for `Owner`
-      and `Admin`. And, other operations should be denied for non-admin.
+    and `Admin`. And, other operations should be denied for non-admin.
 
 Security impact
 ---------------
