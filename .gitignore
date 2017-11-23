@@ -33,6 +33,7 @@ nosetests.xml
 # Mr Developer
 .mr.developer.cfg
 .project
+.idea
 .pydevproject
 
 # Complexity

@@ -36,19 +36,16 @@ Proposed change
 ===============
 
 * A new mogan.objects.aggregate.Aggregate object would be added to the object
-model.
-
+  model.
 * Add a set of API that only allow admins to create, delete, and list
-aggregates, also admins should be able to add nodes to the specific aggregate
-and remove nodes from it.
-
+  aggregates, also admins should be able to add nodes to the specific aggregate
+  and remove nodes from it.
 * When do resources update we will cache the resource providers and the map of
-aggregates with resource providers. Add a node list API for admins which will
-derive resource providers from the cache.
-
+  aggregates with resource providers. Add a node list API for admins which will
+  derive resource providers from the cache.
 * Before scheduling, mogan will handle the flavor resource_aggregates matching
-with node aggregate metadata, then got a list of aggregates, and pass it to
-placement with `member_of` parameter when listing resource providers::
+  with node aggregate metadata, then got a list of aggregates, and pass it to
+  placement with `member_of` parameter when listing resource providers::
 
     /resource_providers?member_of=in:{agg1_uuid},{agg2_uuid},{agg3_uuid}
 
@@ -145,22 +142,21 @@ REST API impact
 
     PATCH /v1/aggregates/{aggregate_id}
 
-  With a body containing the JSON description of the fileds to be updated.
+With a body containing the JSON description of the fieds to be updated.
+Example Update Aggregate: JSON request::
 
-  Example Update Aggregate: JSON request::
-
-  [
-      {
-          "op": "replace",
-          "path": "/name",
-          "value": "foo"
-      },
-      {
-          "op": "add",
-          "path": "/metadata/k1",
-          "value": "v1"
-      }
-  ]
+    [
+        {
+            "op": "replace",
+            "path": "/name",
+            "value": "foo"
+        },
+        {
+            "op": "add",
+            "path": "/metadata/k1",
+            "value": "v1"
+        }
+    ]
 
 - To delete an aggregate, a user will ::
 
